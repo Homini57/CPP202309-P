@@ -1,10 +1,10 @@
 #include "헤더.h"
-
 #define CATEGORY_SIZE 4
-void InReviewScore(int score, string category) {
 
-}
-int PointByReview(int a);
+User user;
+vector <Ingredient> fidge;
+vector <Recipe> recipe_book;
+
 int main(void) {
 	User my_user;
 	// 항목별 평점 수집
@@ -16,13 +16,13 @@ int main(void) {
 	for (string ctg : category) {
 		cout << ctg << " : ";
 		cin >> rating;
-		recipe1.Set_rating(ctg, rating);
+		recipe1.SetRating(ctg, rating);
 	}
 
 	
 
 	// 포인트 적립 기능
-	my_user.plus_point(5);
+	my_user.PlusPoint(5);
 
 	
 	// 재료 관리
@@ -36,7 +36,3 @@ int main(void) {
 	return 0;
 }
 
-
-int PointByReview(int a){
-	return 0;
-}
