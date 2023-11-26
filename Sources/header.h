@@ -3,7 +3,9 @@
 #include <string.h>
 #include <vector>
 #include <map>
+#define CATEGORY_SIZE 4
 using namespace std;
+
 
 class User {
 private:
@@ -12,6 +14,7 @@ private:
 public:
 	User();
 	void PlusPoint(int point);
+	int GetPoint(User user);
 };
 
 class Ingredient {
@@ -40,6 +43,7 @@ public:
 	void SetItem(string item);
 	void SetRating(string item, int rating);
 	void SetIngredient(Ingredient ingredient);
+	void InputRating();
 };
 //장바구니는 collection화를 시켜야 할까? 파일화를 시켜야 할까?
 class Page {

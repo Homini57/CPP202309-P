@@ -1,6 +1,7 @@
 #include "header.h"
+#define CATEGORY_SIZE 4
 
-extern User user;
+
 extern vector <Ingredient> fridge;
 extern vector <Recipe> recipe_book;
 extern vector <Page> Opened_pages;
@@ -127,3 +128,12 @@ int OpenBuy() {
 	int num = 0;
 	return num;
 }
+
+
+
+
+int OpenFridgePage()
+{
+	return 0;
+}
+

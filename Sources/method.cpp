@@ -1,4 +1,5 @@
 #include "header.h"
+extern User user;
 //User Class Method
 User::User() { point = 0; }
 
@@ -6,6 +7,7 @@ void User::PlusPoint(int point) {
 	this->point += point;
 }
 
+int User::GetPoint(User user) { return user.point; }
 //Ingredient Class Method
 Ingredient::Ingredient(string name ="") {
 	this->name = name;
@@ -36,11 +38,33 @@ void Recipe::SetItem(string item) {
 }
 
 void Recipe::SetRating(string item, int rating) {
+
 	this->rating[item] = rating;
 }
 
 void Recipe::SetIngredient(Ingredient ingredient) {
 	ingredient_list.push_back(ingredient);
+}
+void Recipe::InputRating() {
+	int rating;
+	string category[CATEGORY_SIZE] = { "난이도", "조리 시간", "맛", "가성비" };
+	cout << "--------------------------------" << endl;
+	cout << "평점을 입력해주세요(1 ~ 5)" << endl;
+	for (string ctg : category) {
+		cout << ctg << " : ";
+		cin >> rating;
+		if (rating < 1 || 5 < rating) {
+			cout << "입력 범위를 벗어났습니다." << endl;
+			for (string ctg : category) {
+				SetRating(ctg, 0);
+			}
+			break;
+		}
+		SetRating(ctg, rating);
+	}
+	if (GetRating(category[0]) != 0) {
+		user.PlusPoint(5);
+	}
 }
 
 //Page Class Method
