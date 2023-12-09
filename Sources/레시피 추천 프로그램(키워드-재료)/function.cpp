@@ -1,4 +1,4 @@
-#include "header.h"
+#include "page.h"
 #define CATEGORY_SIZE 4
 
 
@@ -17,62 +17,11 @@ string ClassifyIngredient() {
 
 //1레벨 페이지
 //메인 화면 -> 상속 예정
-int OpenMainPage() {
-	Page main_page("메인 메뉴", { "레시피 추천", "레시피 검색", "냉장고", "재료 구매", "마이페이지" });
-	Opened_pages.push_back(main_page);
-	main_page.PrintFront();
-	main_page.PrintMenu("0. 프로그램 종료");
-	//main_page.EnterMenu();
-	//레시피 추천
-	//레시피 검색
-	//냉장고
-	//재료 구매
-	//마이페이지
-	while (1) {
-		int next_page = main_page.InputMenu();
-		switch (next_page) {
-		case 0:
-			return 1;
-		case 1:
-			OpenRecommend();
-			break;
-		case 2:
-			OpenSearch();
-			break;
-		case 3:
-			OpenFridge();
-			break;
-		case 4:
-			OpenBasket();
-			break;
-		case 5:
-			OpenMyPage();
-			break;
-		default:
-			cout << "잘못된 메뉴를 선택하였습니다."<< endl;
-			continue;
-		}
-		break;
-	}
-	
-	return 0;
-}
+
 
 //2레벨 페이지
 // 레시피 추천 페이지
-int OpenRecommend() {
-	Page recommend_page("레시피 추천", { "냉장고 재료","선호 재료" });
-	Opened_pages.push_back(recommend_page);
-	recommend_page.PrintFront();
-	cout << "추천 기준" << endl << endl;
-	recommend_page.PrintMenu();
-	int next_page = recommend_page.InputMenu();
-	// 중요 : 추천 알고리즘은 따로 함수화 하고 추천 페이지는 또 따로 추천 페이지로
-	// 필요한 입력 : 재고 상태 != 0 인 재료 리스트, 선호 재료 리스트, 모든 레시피 이름 리스트
-	//1. 선호 재료 우선 냉장고 재료로 만들 수 있는 레시피 이름 리스트
-	//2. 선호 재료 레시피 이름 리스트
-	return 0;
-}
+
 //레시피 검색 페이지
 int OpenSearch() {
 	Page search_page("레시피 검색", {""});

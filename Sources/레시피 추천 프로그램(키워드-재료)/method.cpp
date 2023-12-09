@@ -1,4 +1,4 @@
-#include "header.h"
+#include "page.h"
 extern User user;
 //User Class Method
 User::User() { point = 0; }
@@ -9,7 +9,7 @@ void User::PlusPoint(int point) {
 
 int User::GetPoint(User user) { return user.point; }
 //Ingredient Class Method
-Ingredient::Ingredient(string name ="") {
+Ingredient::Ingredient(string name = "") {
 	this->name = name;
 	preference = false;
 	stock_state = 0;
@@ -24,9 +24,12 @@ void Ingredient::SetPreference(bool preference) {
 //Recipe Class Method
 Recipe::Recipe() {
 	vector <string> item_list{ "맛", "가성비", "조리시간", "난이도" };
-	for (string item:item_list) {
+	for (string item : item_list) {
 		rating[item] = 0;
 	}
+}
+string Recipe::GetTitle() {
+	return title;
 }
 
 int Recipe::GetRating(string item) {
@@ -67,54 +70,3 @@ void Recipe::InputRating() {
 	}
 }
 
-//Page Class Method
-Page::Page(string name, vector <string> menu_list) {
-	this->name = name;
-
-	for (string menu:menu_list) {
-		this->menu_list.push_back(menu);
-	}
-}
-
-void Page::PrintFront() {
-	cout << endl << endl;
-	cout << "--------------------------------" << endl;
-	cout << name << endl << endl;
-}
-void Page::PrintMenu(string additional_menu) {
-	int i = 1;
-	for (string menu : menu_list) {
-		cout <<" " << i << ". " << menu << endl;
-		i++;
-	}
-	cout << "(" << additional_menu << ")" << endl;
-	
-}
-
-
-int Page::InputMenu(string message) {
-	int next_page = 0;
-	cout << endl;
-	cout << message;
-	cin >> next_page;
-	return next_page;
-}
-
-/*auto Page::EnterMenu(int page_num) {
-	switch (page_num + 1) {
-	case 1:
-		Page next_page("다음 페이지", {"1번", "2번"});
-		return next_page;
-	}
-	
-}*/
-
-MainPage::MainPage(string name, vector<string> menu_list) : Page(name, menu_list) {}
-
-void MainPage::PrintMenu() {
-	int i = 1;
-	for (string menu : menu_list) {
-		cout << " " << i << ". " << menu << endl;
-		i++;
-	}
-}
