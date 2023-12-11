@@ -9,7 +9,7 @@ void User::PlusPoint(int point) {
 
 int User::GetPoint(User user) { return user.point; }
 //Ingredient Class Method
-Ingredient::Ingredient(string name = "") {
+Ingredient::Ingredient(string name) {
 	this->name = name;
 	preference = false;
 	stock_state = 0;
@@ -19,7 +19,10 @@ bool Ingredient::GetPreference() { return preference; }
 void Ingredient::SetPreference(bool preference) {
 	this->preference = preference;
 }
-
+bool Ingredient::GetStockState() { return stock_state; }
+void Ingredient::SetStockState(int stock_state) {
+	this->stock_state = stock_state;
+}
 
 //Recipe Class Method
 Recipe::Recipe() {

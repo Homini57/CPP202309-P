@@ -1,3 +1,5 @@
+// 이름 수정 : 재료 or 레시피 관련
+
 #pragma once
 #include <iostream>
 #include <string.h>
@@ -22,10 +24,12 @@ private:
 	int stock_state;	// 재료의 재고 상태 : 0 = 소진 or 없음, 1 = 소진 임박 2 = 냉장고 재료
 
 public:
-	Ingredient(string name);
+	Ingredient(string name = "");
 	string GetName();
 	bool GetPreference();
 	void SetPreference(bool preference);
+	bool GetStockState();
+	void SetStockState(int stock_state);
 };
 
 class Recipe {

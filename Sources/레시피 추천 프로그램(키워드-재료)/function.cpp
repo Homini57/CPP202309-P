@@ -21,18 +21,19 @@ string ClassifyIngredient() {
 
 //2레벨 페이지
 // 레시피 추천 페이지
-
-//레시피 검색 페이지
+/*
+/레시피 검색 페이지
 int OpenSearch() {
 	Page search_page("레시피 검색", {""});
 	Opened_pages.push_back(search_page);
 	search_page.PrintFront();
 	//검색어 입력
 	//검색 알고리즘
-	// 필요한 입력 : 모든 레시피 이름 리스트, ~~~ 
+	// 필요한 입력 : 모든 레시피 이름 리스트, ~~~
 	return 0;
 }
-
+*/
+/*
 // 냉장고 페이지
 int OpenFridge() {
 	vector <string> ingredient_list;
@@ -50,7 +51,10 @@ int OpenFridge() {
 	return 0;
 }
 
+*/
 
+
+/*
 // 마이페이지
 int OpenMyPage() {
 	int next_page = 0;
@@ -58,6 +62,8 @@ int OpenMyPage() {
 	// 장바구니
 	return next_page;
 }
+*/
+
 
 
 //3레벨 페이지
@@ -69,6 +75,8 @@ int OpenMyPage() {
 // 2-1. 1. 평점 입력, 0 : 메인으로, -1 : 이전 페이지
 //재료구매 페이지
 //장바구니 페이지
+
+/*
 int OpenBasket() {
 	int next_page = 0;
 	return next_page;
@@ -85,4 +93,6 @@ int OpenFridgePage()
 {
 	return 0;
 }
+
+*/
 

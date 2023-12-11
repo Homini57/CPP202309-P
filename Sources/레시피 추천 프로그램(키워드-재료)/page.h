@@ -11,7 +11,7 @@ public:
 
 	Page(string title = "", vector <string> menu_list = {""});
 	void UpdatePage();
-	void PrintMenu(const vector <string>& basic_menu_list = {" - 1. 이전으로", "0. 메인으로", });
+	void PrintMenu(const vector <string>& basic_menu_list = {"- 1. 이전으로", "0. 메인으로" });
 	int InputMenu(string message = "메뉴 선택 : ");
 	//auto EnterMenu(int next_page);
 	void DeletePage() {
@@ -91,6 +91,14 @@ public:
 	RecipePage(Recipe recipe);
 };
 
+class IngredientPage : public Page {
+	Ingredient ingredient;
+	vector <string> menu_list;
+public:
+	IngredientPage(Ingredient ingredient);
+	void PrintMenu (const vector <string>& basic_menu_list = { "- 1. 이전으로", "0. 메인으로" }) ;
+	int OpenPage();
+};
 //int OpenIngredient();
 
 
