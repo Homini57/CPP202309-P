@@ -1,22 +1,79 @@
 #include "page.h"
-#define CATEGORY_SIZE 4
-
-
-extern vector <Ingredient> fridge;
+#include <fstream>
+#include <sstream>
+#include <string>
+/*
 extern vector <Recipe> recipe_book;
-extern vector <Page> Opened_pages;
+*/
+//
+void ReadIngredientData(){
+	ifstream igd_data{ "ingredient_data.csv" };
+	if (!igd_data.is_open()) {
+		std::cerr << "Error" << std::endl;
+		return;
+	}
+	
+	string line;
+	while (getline(igd_data, line)) {
+		Ingredient* pigd = new Ingredient();
+		istringstream iss{ line };
+		string data;
+		int i = 0;
+		while (getline(iss, data, ',')) {
+			switch (i % 5) {
+			case 0:
+				pigd->SetName(data);
+				break;
+			case 1:
+				pigd->SetInBasket(stoi(data));
+				break;
+			case 2:
+				pigd->SetPurchased(stoi(data));
+				break;
+			case 3:
+				pigd->SetPreference(stoi(data));
+				break;
+			case 4:
+				pigd->SetStockState(stoi(data));
+				break;
+			}
+			i++;
+		}
+		Ingredient::fridge.push_back(pigd);
+	}
+	
+	igd_data.close();
+}
+
+void SaveIngredientData(){
+	ofstream igd_data{ "ingredient_data.csv" };
+	if (!igd_data.is_open()) {
+		std::cerr << "Error" << std::endl;
+		return;
+	}
+	for (Ingredient* pigd : Ingredient::fridge) {
+		string name;
+		int in_basket, purchased, preference, stock_state;
+
+		name = pigd->GetName();
+		in_basket = pigd->GetInBasket();
+		purchased = pigd->GetPurchased();
+		preference = pigd->GetPreference();
+		stock_state = pigd->GetStockState();
+		igd_data << name << ",";
+		igd_data << in_basket << "," << purchased << ",";
+		igd_data << preference << "," << stock_state << "," << endl;
+	}
+	igd_data.close();
+}
+
+
 // 제품명 분석 및 재료 분류
 string ClassifyIngredient() {
 	string category; //변수이름이 ingredient가 나으려나?
 	return category;
 }
 // 구매한 재료를 냉장고에 저장
-
-
-// 페이지 클래스를 만들어서 상속해야 하나?
-
-//1레벨 페이지
-//메인 화면 -> 상속 예정
 
 
 //2레벨 페이지
@@ -54,45 +111,9 @@ int OpenFridge() {
 */
 
 
-/*
-// 마이페이지
-int OpenMyPage() {
-	int next_page = 0;
-	// 읽은 레시피
-	// 장바구니
-	return next_page;
-}
-*/
 
-
-
-//3레벨 페이지
-// 재료 페이지
 // 레시피 페이지
 // 1. 필요 재료 & 현재 상태 표시(재고 상태, 선호도)
 // 1-1. 재료 번호 입력시 : 재료 선호도, 재료 소진임박, 소진 -> 장바구니에 담기
 // 2. 레시피
 // 2-1. 1. 평점 입력, 0 : 메인으로, -1 : 이전 페이지
-//재료구매 페이지
-//장바구니 페이지
-
-/*
-int OpenBasket() {
-	int next_page = 0;
-	return next_page;
-}
-int OpenBuy() {
-	int num = 0;
-	return num;
-}
-
-
-
-
-int OpenFridgePage()
-{
-	return 0;
-}
-
-*/
-

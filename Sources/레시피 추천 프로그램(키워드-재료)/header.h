@@ -1,5 +1,4 @@
 // 이름 수정 : 재료 or 레시피 관련
-
 #pragma once
 #include <iostream>
 #include <string.h>
@@ -14,22 +13,31 @@ private:
 public:
 	User();
 	void PlusPoint(int point);
-	int GetPoint(User user);
+	int GetPoint();
 };
 
 class Ingredient {
 private:
 	string name;
+	bool in_basket;
+	bool purchased;
 	bool preference;
 	int stock_state;	// 재료의 재고 상태 : 0 = 소진 or 없음, 1 = 소진 임박 2 = 냉장고 재료
 
+
 public:
+	static vector <Ingredient*> fridge;
 	Ingredient(string name = "");
 	string GetName();
+	void SetName(string name);
 	bool GetPreference();
 	void SetPreference(bool preference);
-	bool GetStockState();
+	int GetStockState();
 	void SetStockState(int stock_state);
+	bool GetInBasket();
+	void SetInBasket(bool in_basket);
+	bool GetPurchased();
+	void SetPurchased(bool purchased);
 };
 
 class Recipe {
