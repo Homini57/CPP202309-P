@@ -1,11 +1,9 @@
-#include "page.h"
+#include "header.h"
 #include <fstream>
 #include <sstream>
 #include <string>
-/*
-extern vector <Recipe> recipe_book;
-*/
-//
+
+
 void ReadIngredientData(){
 	ifstream igd_data{ "ingredient_data.csv" };
 	if (!igd_data.is_open()) {
@@ -14,12 +12,12 @@ void ReadIngredientData(){
 	}
 	
 	string line;
-	while (getline(igd_data, line)) {
+	while (getline(igd_data, line)) { // igd_data에서 한줄씩 line에 저장
 		Ingredient* pigd = new Ingredient();
-		istringstream iss{ line };
+		istringstream iss{ line }; // line(한줄)을 데이터 추출 가능 형태로 저장
 		string data;
 		int i = 0;
-		while (getline(iss, data, ',')) {
+		while (getline(iss, data, ',')) { // iss에서 ',' 기준으로 데이터 추출
 			switch (i % 5) {
 			case 0:
 				pigd->SetName(data);
@@ -51,6 +49,7 @@ void SaveIngredientData(){
 		std::cerr << "Error" << std::endl;
 		return;
 	}
+	// 냉장고의 각 재료들의 데이터들을 igd_data에 저장
 	for (Ingredient* pigd : Ingredient::fridge) {
 		string name;
 		int in_basket, purchased, preference, stock_state;
@@ -66,54 +65,3 @@ void SaveIngredientData(){
 	}
 	igd_data.close();
 }
-
-
-// 제품명 분석 및 재료 분류
-string ClassifyIngredient() {
-	string category; //변수이름이 ingredient가 나으려나?
-	return category;
-}
-// 구매한 재료를 냉장고에 저장
-
-
-//2레벨 페이지
-// 레시피 추천 페이지
-/*
-/레시피 검색 페이지
-int OpenSearch() {
-	Page search_page("레시피 검색", {""});
-	Opened_pages.push_back(search_page);
-	search_page.PrintFront();
-	//검색어 입력
-	//검색 알고리즘
-	// 필요한 입력 : 모든 레시피 이름 리스트, ~~~
-	return 0;
-}
-*/
-/*
-// 냉장고 페이지
-int OpenFridge() {
-	vector <string> ingredient_list;
-	Page fridge_page("냉장고", ingredient_list);
-	//냉장고 속 재료를 메뉴화
-	for (Ingredient ingredient : fridge) {
-		string ingredient_name = ingredient.GetName();
-		ingredient_list.push_back(ingredient_name);
-	}
-	fridge_page.PrintFront();
-	fridge_page.PrintMenu();
-	int next_page = fridge_page.InputMenu("재료 선택 : ");
-	// 재료 & 현재 상태 표시
-	// 재료 번호 입력시 : 재료 선호도, 재고 상태 -> 장바구니에 담기
-	return 0;
-}
-
-*/
-
-
-
-// 레시피 페이지
-// 1. 필요 재료 & 현재 상태 표시(재고 상태, 선호도)
-// 1-1. 재료 번호 입력시 : 재료 선호도, 재료 소진임박, 소진 -> 장바구니에 담기
-// 2. 레시피
-// 2-1. 1. 평점 입력, 0 : 메인으로, -1 : 이전 페이지
